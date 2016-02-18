@@ -2,7 +2,6 @@ local awful         = require("awful")
 local beautiful     = require("beautiful")
 local menubar       = require("menubar")
 local alttab        = require("alttab")
-local revelation    = require("awesome-revelation")
 
 require("awesome_config_layouts")
 
