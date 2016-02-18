@@ -1,6 +1,8 @@
 local awful         = require("awful")
 local beautiful     = require("beautiful")
 local menubar       = require("menubar")
+local alttab        = require("alttab")
+local revelation    = require("awesome-revelation")
 
 require("awesome_config_layouts")
 
@@ -13,6 +15,44 @@ menubar.geometry = {
    y = 18
 }
 
+-- Conky
+do
+    local conky = nil
+
+    function get_conky(default)
+        if conky and conky.valid then
+            return conky
+        end
+
+        conky = awful.client.iterate(function(c) return c.class == "conky" end)()
+        return conky or default
+    end
+
+    function raise_conky()
+        get_conky({}).ontop = true
+        get_conky({}).hidden = false
+    end
+
+    function lower_conky()
+        get_conky({}).ontop = false
+        get_conky({}).hidden = true
+    end
+
+    local t = timer({ timeout = 0.01 })
+    t:connect_signal("timeout", function()
+        t:stop()
+        lower_conky()
+    end)
+    function lower_conky_delayed()
+        t:again()
+    end
+
+    function toggle_conky()
+        local conky = get_conky({})
+        conky.ontop = not conky.ontop
+	conky.hidden = not conky.hidden
+    end
+end
 
 -- Globalkeys
 globalkeys = awful.util.table.join(
@@ -54,13 +94,16 @@ globalkeys = awful.util.table.join(
         end
     ),
     -- Win tab to switch focus
-    awful.key({ modkey,           }, "Tab", 
-        function () 
-            awful.client.focus.byidx(1) 
-            if client.focus 
-                then client.focus:raise() 
-            end 
-        end
+    awful.key({ modkey,            }, "Tab",
+       function ()
+          alttab.switch(1, "Super_L", "Tab", "ISO_Left_Tab")
+       end
+    ),
+
+    awful.key({ modkey,  "Shift"   }, "Tab",
+       function ()
+          alttab.switch(-1, "Super_L", "Tab", "ISO_Left_Tab")
+       end
     ),
     -- Spawn terminal
     awful.key({ modkey,           }, "Return", function() awful.util.spawn(terminal) end),
@@ -71,7 +114,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function() awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function() awful.layout.inc(layouts, -1) end),
     -- Menubar
-    awful.key({ modkey,           }, "p",     function() menubar.show() end)
+    awful.key({ modkey,           }, "p",     function() menubar.show() end),
+    -- Conky
+    awful.key({                   }, "F10",   function() raise_conky()  end, function() lower_conky() end),
+    awful.key({ modkey,           }, "i",     function() toggle_conky() end)
 )
 -- ClientKeys
 clientkeys = awful.util.table.join(
@@ -119,16 +165,26 @@ clientbuttons = awful.util.table.join(
 -- Awful rules for all clients
 awful.rules.rules = {
     -- All clients will match this rule.
-    { 
+    {
         rule = {},
-        properties = { 
+        properties = {
             border_width = beautiful.border_width,
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             keys = clientkeys,
-            buttons = clientbuttons 
-        } 
+            buttons = clientbuttons
+        }
     },
+    {
+	rule = { class = "conky" },
+	properties = {
+	    floating = true,
+            sticky = true,
+            ontop = false,
+            focusable = false,
+	    hidden = true
+        }
+    }
 }
 
 

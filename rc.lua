@@ -16,6 +16,8 @@ config_dir = (os.getenv("HOME").."/.config/awesome")
 themes_dir = (config_dir .. "/theme/")
 beautiful.init(themes_dir .. "/theme.lua")
 
+
+
 -- Add current directory to package path
 package.path = package.path .. ";" .. config_dir .. "/partials/?.lua"
 

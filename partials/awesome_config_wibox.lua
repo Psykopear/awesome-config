@@ -20,7 +20,6 @@ bar_spr = wibox.widget.textbox('<span font="Tamsyn 8"> </span>' .. markup("#0599
 half_bar_spr = wibox.widget.textbox('<span font="Tamsyn 8"> </span>' .. markup("#0599ca", "||") .. '<span font="Tamsyn 8"> </span>')
 
 -- {{{ Wibox
-
 -- vicious.register(volumewidget, vicious.widgets.volume)
 -- vicious.register(batwidget, vicious.widgets.battery)
 
@@ -86,7 +85,7 @@ for s = 1, screen.count() do
     -- left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
-    left_layout:add(bar_spr) 
+    left_layout:add(bar_spr)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
