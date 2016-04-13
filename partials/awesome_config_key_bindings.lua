@@ -2,6 +2,7 @@ local awful         = require("awful")
 local beautiful     = require("beautiful")
 local menubar       = require("menubar")
 local alttab        = require("alttab")
+local naughty       = require("naughty")
 
 require("awesome_config_layouts")
 
@@ -105,13 +106,13 @@ globalkeys = awful.util.table.join(
        end
     ),
     -- Spawn terminal
-    awful.key({ modkey,           }, "Return", function() awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "Return", function() awful.util.spawn('gnome-terminal -e tmux') end),
     -- Restart and quit from awesome
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
     -- Switch layouts
-    awful.key({ modkey,           }, "space", function() awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function() awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
     -- Menubar
     awful.key({ modkey,           }, "p",     function() menubar.show() end),
     -- Conky
@@ -158,6 +159,8 @@ root.keys(globalkeys)
 -- Client buttons
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+    awful.button({ modkey }, 1, function (c) client.focus = c; c:raise(); awful.client.floating.set(c, true); end),
+    awful.button({ modkey , "Shift"}, 1, function (c) awful.client.floating.delete(c); end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
@@ -171,7 +174,15 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             keys = clientkeys,
-            buttons = clientbuttons
+	    maximized_vertical   = false,
+            maximized_horizontal = false,
+            buttons = clientbuttons,
+	    size_hints_honor = false,
+	    callback = function (c)
+                -- awful.placement.centered(c,nil)
+		awful.placement.no_overlap(c)
+		awful.placement.no_offscreen(c)
+            end
         }
     },
     {

@@ -8,7 +8,7 @@ myawesomemenu = {
     { "quit", awesome.quit }
 }
 mymainmenu = awful.menu(
-    { items = { 
+    { items = {
         { "awesome", myawesomemenu, beautiful.awesome_icon },
         { "open terminal", terminal },
     }

@@ -18,7 +18,7 @@ require("awesome_config_textclock")
 -- Separator
 bar_spr = wibox.widget.textbox('<span font="Tamsyn 8"> </span>' .. markup("#0599ca", "||||") .. '<span font="Tamsyn 8"> </span>')
 half_bar_spr = wibox.widget.textbox('<span font="Tamsyn 8"> </span>' .. markup("#0599ca", "||") .. '<span font="Tamsyn 8"> </span>')
-
+--
 -- {{{ Wibox
 -- vicious.register(volumewidget, vicious.widgets.volume)
 -- vicious.register(batwidget, vicious.widgets.battery)
@@ -27,6 +27,7 @@ half_bar_spr = wibox.widget.textbox('<span font="Tamsyn 8"> </span>' .. markup("
 mywibox = {}
 mypromptbox = {}
 mytaglist = {}
+mylayoutbox = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
@@ -71,12 +72,20 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 for s = 1, screen.count() do
+
+    -- Layout text
+    -- local layout_string  = awful.layout.getname(awful.layout.get(s)):gsub("^%l", string.upper)
+    -- layout_textbox[s] = wibox.widget.textbox(markup("#DDC246", layout_string))
+
+
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
+    -- Layoutbox
+    mylayoutbox[s] = awful.widget.layoutbox(s)
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s, height = "18" })
 
@@ -85,7 +94,9 @@ for s = 1, screen.count() do
     -- left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
-    left_layout:add(bar_spr)
+    left_layout:add(half_bar_spr)
+    left_layout:add(mylayoutbox[s])
+    left_layout:add(half_bar_spr)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()

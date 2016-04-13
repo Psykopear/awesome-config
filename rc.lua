@@ -50,3 +50,10 @@ require("awesome_config_autostart")
 
 -- Turns off the terminal bell
 awful.util.spawn_with_shell("/usr/bin/xset b off")
+
+-- Set caps lock to ctrl
+awful.util.spawn_with_shell("/usr/bin/setxkbmap -option ctrl:nocaps")
+
+-- Floating arrange
+-- Signal function to execute when a new client appears.
+

@@ -9,6 +9,21 @@ theme.wallpaper                     = theme.dir .. "/wall.png"
 
 theme.font                          = "Ubuntu 12"
 
+-- | Layout | --
+
+theme.layout_floating   = theme.dir .. "/icons/layouts/floating.png"
+theme.layout_tile       = theme.dir .. "/icons/layouts/tile.png"
+theme.layout_tileleft   = theme.dir .. "/icons/layouts/tileleft.png"
+theme.layout_tilebottom = theme.dir .. "/icons/layouts/tilebottom.png"
+theme.layout_tiletop    = theme.dir .. "/icons/layouts/tiletop.png"
+theme.layout_fairv      = theme.dir .. "/icons/layouts/tiletop.png"
+theme.layout_fairh      = theme.dir .. "/icons/layouts/tiletop.png"
+theme.layout_spiral     = theme.dir .. "/icons/layouts/tiletop.png"
+theme.layout_dwindle    = theme.dir .. "/icons/layouts/tiletop.png"
+theme.layout_max        = theme.dir .. "/icons/layouts/max.png"
+theme.layout_fullscreen = theme.dir .. "/icons/layouts/maxfullscreen.png"
+theme.layout_magnifier  = theme.dir .. "/icons/layouts/magnifier.png"
+
 -- Colors
 theme.fg_normal                     = "#EEEEEE"
 theme.fg_focus                      = "#FFFFFF"

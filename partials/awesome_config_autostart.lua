@@ -11,13 +11,16 @@ function run_once(cmd)
 end
 
 -- Redshift to save my eyes
-run_once("redshift -l 49.26:-123.23")
+run_once("redshift -l 43.1411627:12.2244593 -t 5700:3600  -m randr")
 -- Unagi Composite Manager
-run_once("unagi &")
--- DropwDown terminal 
+-- run_once("unagi &")
+-- Use compton instead
+run_once("compton --backend glx --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible")
+-- DropwDown terminal
 run_once("tilda &")
 -- Network Manager applet
 run_once("nm-applet &")
 -- Megasync
 run_once("megasync")
-
+-- ROFI launcher
+run_once("rofi -key-run SuperL+o -terminal gnome-terminal")
