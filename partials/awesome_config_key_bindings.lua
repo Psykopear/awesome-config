@@ -115,6 +115,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
     -- Menubar
     awful.key({ modkey,           }, "p",     function() menubar.show() end),
+    awful.key({ modkey,           }, "o",     function() awful.util.spawn("rofi -show run") end),
     -- Conky
     awful.key({                   }, "F10",   function() raise_conky()  end, function() lower_conky() end),
     awful.key({ modkey,           }, "i",     function() toggle_conky() end)
