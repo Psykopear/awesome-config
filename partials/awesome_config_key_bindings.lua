@@ -118,7 +118,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "o",     function() awful.util.spawn("rofi -show run") end),
     -- Conky
     awful.key({                   }, "F10",   function() raise_conky()  end, function() lower_conky() end),
-    awful.key({ modkey,           }, "i",     function() toggle_conky() end)
+    awful.key({ modkey,           }, "i",     function() toggle_conky() end),
+    -- Lock screen
+    awful.key({ modkey, "Shift"   }, "l",     function() awful.util.spawn("light-locker-command -l") end)
 )
 -- ClientKeys
 clientkeys = awful.util.table.join(
