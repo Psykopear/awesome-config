@@ -16,8 +16,6 @@ config_dir = (os.getenv("HOME").."/.config/awesome")
 themes_dir = (config_dir .. "/theme/")
 beautiful.init(themes_dir .. "/theme.lua")
 
-
-
 -- Add current directory to package path
 package.path = package.path .. ";" .. config_dir .. "/partials/?.lua"
 
@@ -53,7 +51,3 @@ awful.util.spawn_with_shell("/usr/bin/xset b off")
 
 -- Set caps lock to ctrl
 awful.util.spawn_with_shell("/usr/bin/setxkbmap -option ctrl:nocaps")
-
--- Floating arrange
--- Signal function to execute when a new client appears.
-

@@ -15,45 +15,6 @@ menubar.geometry = {
    y = 18
 }
 
--- Conky
-do
-    local conky = nil
-
-    function get_conky(default)
-        if conky and conky.valid then
-            return conky
-        end
-
-        conky = awful.client.iterate(function(c) return c.class == "conky" end)()
-        return conky or default
-    end
-
-    function raise_conky()
-        get_conky({}).ontop = true
-        get_conky({}).hidden = false
-    end
-
-    function lower_conky()
-        get_conky({}).ontop = false
-        get_conky({}).hidden = true
-    end
-
-    local t = timer({ timeout = 0.01 })
-    t:connect_signal("timeout", function()
-        t:stop()
-        lower_conky()
-    end)
-    function lower_conky_delayed()
-        t:again()
-    end
-
-    function toggle_conky()
-        local conky = get_conky({})
-        conky.ontop = not conky.ontop
-	conky.hidden = not conky.hidden
-    end
-end
-
 -- Globalkeys
 globalkeys = awful.util.table.join(
     -- Move between workspaces
@@ -182,7 +143,6 @@ awful.rules.rules = {
             buttons = clientbuttons,
 	    size_hints_honor = false,
 	    callback = function (c)
-                -- awful.placement.centered(c,nil)
 		awful.placement.no_overlap(c)
 		awful.placement.no_offscreen(c)
             end

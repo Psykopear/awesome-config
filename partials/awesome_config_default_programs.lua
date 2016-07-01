@@ -1,7 +1,7 @@
 -- Default programs
-terminal = "tilda"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-browser = "/opt/google/chrome/google-chrome-stable"
+browser = "firefox"
 
 
