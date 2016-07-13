@@ -7,7 +7,7 @@ theme                               = {}
 theme.dir                           = os.getenv("HOME") .. "/.config/awesome/theme/"
 theme.wallpaper                     = theme.dir .. "/wall.png"
 
-theme.font                          = "Ubuntu 12"
+theme.font                          = "Ubuntu 14"
 
 -- | Layout | --
 
@@ -27,16 +27,18 @@ theme.layout_magnifier  = theme.dir .. "/icons/layouts/magnifier.png"
 -- Colors
 theme.fg_normal                     = "#EEEEEE"
 theme.fg_focus                      = "#FFFFFF"
-theme.bg_normal                     = "#444444"
-theme.bg_focus                      = "#444444"
+theme.bg_normal                     = "#020202"
+theme.bg_focus                      = "#020202"
 theme.fg_urgent                     = "#000000"
 theme.bg_urgent                     = "#FFFFFF"
-theme.bar_background                = "#a4ce8a"
-theme.border_width                  = 0
-theme.taglist_fg_focus              = "#FFFFFF"
+theme.bar_background                = "#0f0f0f"
+theme.border_width                  = 1
+-- theme.border_normal                 = "#FFFFFF"
+-- theme.border_marked                 = "#FFFF00"
+theme.taglist_fg_focus              = "#00ddFF"
 theme.taglist_bg_focus              = "png:" .. theme.dir .. "/icons/taglist_bg_focus.png"
-theme.menu_height                   = "16"
-theme.menu_width                    = "150"
+-- theme.menu_height                   = ""
+-- theme.menu_width                    = "150"
 
 theme.ocol                          = "<span color='" .. theme.fg_normal .. "'>"
 theme.ccol                          = "</span>"

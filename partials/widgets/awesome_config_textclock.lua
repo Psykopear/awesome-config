@@ -10,7 +10,7 @@ mytextclock = lain.widgets.abase({
 
     for i=1,3 do t_output = t_output .. " " .. o_it(i) end
 
-    widget:set_markup(markup("#0198cb", t_output) .. markup("#7778AF", " > ") .. markup("#de5e1e", o_it(1)) .. " ")
+    widget:set_markup(markup("#45d9Fa", t_output) .. markup("#FFFFFF", " > ") .. markup("#fe5e1e", o_it(1)) .. " ")
 end})
 
 -- Attach calendar

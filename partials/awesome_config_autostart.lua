@@ -12,12 +12,8 @@ end
 
 -- Redshift to save my eyes
 run_once("redshift -l 43.1411627:12.2244593 -t 5700:3600  -m randr")
--- Unagi Composite Manager
--- run_once("unagi &")
 -- Use compton instead
-run_once("compton --backend glx --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible")
--- DropwDown terminal
--- run_once("tilda &")
+run_once("compton --backend glx --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible --shadow-red 0.9 --shadow-blue 0.5 --shadow-green 1.0  -r 10 -l -15 -t -15 -o 0.3")
 -- Network Manager applet
 run_once("nm-applet &")
 -- Megasync
