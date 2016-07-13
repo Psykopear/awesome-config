@@ -68,12 +68,20 @@ awful.button({ }, 5, function ()
     if client.focus then client.focus:raise() end
 end))
 
+-- Battery widget
+-- TODO: move to separate file
 batterywidget = wibox.widget.textbox()
 batterywidgettimer = timer({ timeout = 5 })
 batterywidgettimer:connect_signal("timeout",
   function()
     fh = assert(io.popen("acpi | cut -d, -f 2 -", "r"))
-    batterywidget:set_markup('<span font="Ubuntu 14">' .. markup("#45d9Fa", fh:read("*l")) ..'</span>' .. bar_spr_txt)
+    charging_state = io.popen("acpi | cut -d, -f 1 | cut -d' ' -f 3"):read()
+    if charging_state == "Charging" then
+        color = "#45D9FA"
+    elseif charging_state == "Discharging" then
+        color = "#FF0000"
+    end
+    batterywidget:set_markup('<span font="Ubuntu 14">' .. markup(color, fh:read("*l")) .. '</span>' .. bar_spr_txt)
     fh:close()
   end
 )
