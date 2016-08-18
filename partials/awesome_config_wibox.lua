@@ -2,6 +2,7 @@ local awful     = require("awful")
 local wibox     = require("wibox")
 local vicious   = require("vicious")
 local beautiful = require("beautiful")
+local layout_indicator = require("keyboard-layout-indicator")
 
 require("awesome_config_layouts")
 
@@ -89,6 +90,15 @@ batterywidgettimer:connect_signal("timeout",
 )
 batterywidgettimer:start()
 
+-- Layout widget
+-- define layouts
+kbdcfg = layout_indicator({
+    layouts = {
+        {name="it",  layout="it",  variant=nil},
+        {name="us",  layout="us",  variant=nil}
+    }
+})
+
 -- Create the wibox
 mywibox = {}
 mypromptbox = {}
@@ -120,6 +130,8 @@ for s = 1, screen.count() do
     left_layout:add(mytaglist[s])
     left_layout:add(bar_spr)
     left_layout:add(mylayoutbox[s])
+    left_layout:add(bar_spr)
+    left_layout:add(kbdcfg.widget)
     left_layout:add(bar_spr)
 
     -- Widgets that are aligned to the right
