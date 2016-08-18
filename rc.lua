@@ -16,6 +16,32 @@ config_dir = (os.getenv("HOME").."/.config/awesome")
 themes_dir = (config_dir .. "/theme/")
 beautiful.init(themes_dir .. "/theme.lua")
 
+-- Signals connections
+-- TODO: Move to a separate file
+
+-- Remove border on maximixed windows
+-- Here I check only for miximized_horizontal because i won't use it without
+-- maximized_vertical in general, so that's enough for me to say that the window
+-- is maximized
+client.connect_signal("property::maximized_horizontal", function (c)
+    if c.maximized_horizontal then
+        c.border_width = 0
+    else
+        -- TODO: take border from the theme
+        c.border_width = 5
+    end
+end
+)
+
+client.connect_signal("manage", function (c, startup)
+    -- Enable sloppy focus
+    c:connect_signal("mouse::enter", function(c)
+        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier and awful.client.focus.filter(c) then
+            client.focus = c
+        end
+    end)
+end)
+
 -- Add current directory to package path
 package.path = package.path .. ";" .. config_dir .. "/partials/?.lua"
 

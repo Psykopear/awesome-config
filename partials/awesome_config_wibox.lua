@@ -80,6 +80,8 @@ batterywidgettimer:connect_signal("timeout",
         color = "#45D9FA"
     elseif charging_state == "Discharging" then
         color = "#FF0000"
+    elseif charging_state == "Full" then
+        color = "#00FF00"
     end
     batterywidget:set_markup('<span font="Ubuntu 14">' .. markup(color, fh:read("*l")) .. '</span>' .. bar_spr_txt)
     fh:close()
@@ -114,6 +116,7 @@ for s = 1, screen.count() do
 
     -- promptbox
     left_layout:add(mypromptbox[s])
+    left_layout:add(bar_spr)
     left_layout:add(mytaglist[s])
     left_layout:add(bar_spr)
     left_layout:add(mylayoutbox[s])
