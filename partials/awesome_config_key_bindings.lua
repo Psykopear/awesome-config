@@ -80,7 +80,7 @@ globalkeys = awful.util.table.join(
 
     -- Menubar
     awful.key({ modkey,           }, "p",     function() menubar.show() end),
-    awful.key({ modkey,           }, "o",     function() awful.util.spawn("rofi -combi-modi window,drun -show combi") end),
+    awful.key({ modkey,           }, "o",     function() awful.util.spawn("rofi -combi-modi window,drun,run -show combi") end),
 
     -- Lock screen
     awful.key({ modkey, "Shift"   }, "l",     function() awful.util.spawn("light-locker-command -l") end)

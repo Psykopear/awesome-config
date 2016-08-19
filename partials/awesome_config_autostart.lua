@@ -17,7 +17,7 @@ run_once("redshift -l 43.1411627:12.2244593 -t 5700:3600  -m randr")
 run_once("compton --backend glx --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible")
 -- Network Manager applet
 run_once("nm-applet &")
--- Megasync
-run_once("megasync")
+-- Franz
+run_once("franz")
 -- ROFI launcher
 run_once("rofi -key-run SuperL+o -terminal gnome-terminal")
