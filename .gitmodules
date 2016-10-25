@@ -4,3 +4,6 @@
 [submodule "awesome-switcher-preview"]
 	path = awesome-switcher-preview
 	url = git@github.com:berlam/awesome-switcher-preview
+[submodule "keyboard-layout-indicator"]
+	path = keyboard-layout-indicator
+	url = git@github.com:thomas-glaessle/awesome.keyboard-layout-indicator.git

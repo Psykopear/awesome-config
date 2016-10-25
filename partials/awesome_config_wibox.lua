@@ -2,7 +2,7 @@ local awful     = require("awful")
 local wibox     = require("wibox")
 local vicious   = require("vicious")
 local beautiful = require("beautiful")
-local layout_indicator = require("keyboard-layout-indicator")
+local layout_indicator = require("keyboard-layout-indicator/keyboard-layout-indicator")
 local lain  = require("lain")
 local markup      = lain.util.markup
 
