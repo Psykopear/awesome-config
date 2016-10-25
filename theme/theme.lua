@@ -1,6 +1,6 @@
 local lain = require("lain")
 
-markup = lain.util.markup
+local markup = lain.util.markup
 
 theme                               = {}
 

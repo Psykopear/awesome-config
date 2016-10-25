@@ -1,6 +1,6 @@
 local lain  = require("lain")
 
-markup      = lain.util.markup
+local markup      = lain.util.markup
 mytextclock = lain.widgets.abase({
     timeout  = 60,
     cmd      = "date +'%A %d %B %R'",

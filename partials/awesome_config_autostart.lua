@@ -18,6 +18,8 @@ run_once("compton --backend glx --paint-on-overlay --glx-no-stencil --vsync open
 -- Network Manager applet
 run_once("nm-applet &")
 -- Franz
-run_once("franz")
+-- run_once("franz")
 -- ROFI launcher
 run_once("rofi -key-run SuperL+o -terminal gnome-terminal")
+-- Light locker
+run_once("light-locker")

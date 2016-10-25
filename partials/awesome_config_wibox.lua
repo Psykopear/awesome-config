@@ -3,6 +3,8 @@ local wibox     = require("wibox")
 local vicious   = require("vicious")
 local beautiful = require("beautiful")
 local layout_indicator = require("keyboard-layout-indicator")
+local lain  = require("lain")
+local markup      = lain.util.markup
 
 require("awesome_config_layouts")
 
@@ -94,8 +96,8 @@ batterywidgettimer:start()
 -- define layouts
 kbdcfg = layout_indicator({
     layouts = {
-        {name="it",  layout="it",  variant=nil},
-        {name="us",  layout="us",  variant=nil}
+        {name="US",  layout="us",  variant=nil},
+        {name="IT",  layout="it",  variant=nil},
     }
 })
 

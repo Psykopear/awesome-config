@@ -10,6 +10,8 @@ require("awesome_config_layouts")
 menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", "/usr/local/share/applications", "~/.local/share/applications" }
 menubar.geometry = { height = 30, width = 1920, x = 0, y = 30 }
 
+local layoutCounter = 1
+
 -- Globalkeys
 globalkeys = awful.util.table.join(
 
@@ -68,15 +70,20 @@ globalkeys = awful.util.table.join(
     ),
 
     -- Spawn terminal
-    awful.key({ modkey,           }, "Return", function() awful.util.spawn('gnome-terminal -e tmux') end),
+    awful.key({ modkey,           }, "Return", function() awful.util.spawn('st -e tmux') end),
 
     -- Restart and quit from awesome
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
-    -- Switch layouts
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    -- Arrange windows with different layouts, but always go back to floating after
+    awful.key({ modkey,           }, "space",
+        function ()
+            layoutCounter = (layoutCounter + 1) % #layouts
+            if layoutCounter == 0 then layoutCounter = 1 end
+            awful.layout.inc(layouts,  layoutCounter)
+            awful.layout.set(awful.layout.suit.floating)
+        end),
 
     -- Menubar
     awful.key({ modkey,           }, "p",     function() menubar.show() end),

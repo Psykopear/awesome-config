@@ -76,4 +76,4 @@ require("awesome_config_autostart")
 awful.util.spawn_with_shell("/usr/bin/xset b off")
 
 -- Set caps lock to ctrl
-awful.util.spawn_with_shell("/usr/bin/setxkbmap -option ctrl:nocaps")
+awful.util.spawn_with_shell("/usr/bin/setxkbmap -option ctrl:nocaps us")
