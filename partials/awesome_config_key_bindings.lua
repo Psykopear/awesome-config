@@ -1,7 +1,7 @@
 local awful         = require("awful")
 local beautiful     = require("beautiful")
 local menubar       = require("menubar")
-local alttab        = require("alttab")
+local switcher      = require("awesome-switcher-preview")
 local naughty       = require("naughty")
 
 require("awesome_config_layouts")
@@ -9,6 +9,20 @@ require("awesome_config_layouts")
 -- Configure menubar
 menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", "/usr/local/share/applications", "~/.local/share/applications" }
 menubar.geometry = { height = 30, width = 1920, x = 0, y = 30 }
+
+-- Configure switcher
+switcher.settings.preview_box = true                                 -- display preview-box
+switcher.settings.preview_box_bg = "#ddddddaa"                       -- background color
+switcher.settings.preview_box_border = "#22222200"                   -- border-color
+switcher.settings.preview_box_fps = 20                               -- refresh framerate
+switcher.settings.preview_box_delay = 0                            -- delay in ms
+switcher.settings.preview_box_title_font = {"sans","italic","normal"}-- the font for cairo
+switcher.settings.preview_box_title_font_size_factor = 0.8           -- the font sizing factor
+switcher.settings.preview_box_title_color = {0,0,0,1}                -- the font color
+
+switcher.settings.client_opacity = false                             -- opacity for unselected clients
+switcher.settings.client_opacity_value = 0.5                         -- alpha-value
+switcher.settings.client_opacity_delay = 0                         -- delay in ms
 
 local layoutCounter = 1
 
@@ -60,12 +74,12 @@ globalkeys = awful.util.table.join(
     -- Win tab to switch focus
     awful.key({ modkey,            }, "Tab",
         function ()
-            alttab.switch(1, "Super_L", "Tab", "ISO_Left_Tab")
+            switcher.switch(1, "Super_L", "Tab", "ISO_Left_Tab")
         end
     ),
     awful.key({ modkey,  "Shift"   }, "Tab",
         function ()
-            alttab.switch(-1, "Super_L", "Tab", "ISO_Left_Tab")
+            switcher.switch(-1, "Super_L", "Tab", "ISO_Left_Tab")
         end
     ),
 
